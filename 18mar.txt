@@ -1,0 +1,11 @@
+composer new projectname 
+composer require laravel/ui
+php artisan ui:auth
+
+vite --> resources--> views--> auth--> layout-> app.blade.php 
+
+php artisan make:migration add_details_to_users_table 
+ $table->tinyInteger('role_as')->default('1')->comment('1-user , 0-admin');
+ php artisan migrate
+
+ php artisan migrate:rollback --step=1
