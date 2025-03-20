@@ -18,6 +18,8 @@ Route::prefix('admin')->middleware(['auth',AdminMiddleware::class])->group(funct
         Route::get('dashboard' ,'index');
         Route::get('add/product' ,'addp');
         Route::get('view/product' ,'viewp');
+        Route::post('add/product' ,'store')->name('addproduct');
+        Route::get('delete/product/{id}' ,'deletep');
 
     }));
 });
