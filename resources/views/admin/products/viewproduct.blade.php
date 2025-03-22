@@ -40,9 +40,9 @@
                                                 @endif</td>
                                                 
                                                 <td>
-                                                    <button  type="button" class="btn btn-success"  >
+                                                    <a href="{{url('/admin/edit/product/'.$product->id)}}"   type="button" class="btn btn-success"  >
                                                         <i class="bi bi-pen"></i>
-                                                    </button>
+                                                    </a>
                                                     <a href="{{url('/admin/delete/product/'.$product->id)}}" 
                                                     onclick="return window.confirm('are you sure to delete this??')" type="button" class="btn btn-danger"  >
                                                         <i class="bi bi-trash"></i>
