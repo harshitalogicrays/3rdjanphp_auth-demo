@@ -29,6 +29,7 @@ Route::prefix('admin')->middleware(['auth',AdminMiddleware::class])->group(funct
 Route::controller(frontendController::class)->group((function(){ 
     Route::get('/','index');
     Route::get('/shop','shop');
+    Route::get('/shop/{id}','viewproduct');
 
 }));
    
