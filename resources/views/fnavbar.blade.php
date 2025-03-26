@@ -41,7 +41,7 @@
                     <div class="position-relative me-3">
                         <a class="nav-link" href="{{url('/cart') }}" style="font-size: 28px">
                             <i class="bi bi-cart" ></i></a>
-                        <span class="badge rounded-pill text-bg-danger" style="position:absolute;top:4px;right:-5px ">0</span>
+                        <span class="badge rounded-pill text-bg-danger" style="position:absolute;top:4px;right:-5px "> @livewire('cart-count')</span>
                     </div>
                         
                 </li>

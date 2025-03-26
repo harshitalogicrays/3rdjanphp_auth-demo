@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\cartController;
 use App\Http\Middleware\AdminMiddleware;
 use App\Http\Controllers\frontendController;
 use App\Http\Controllers\Admin\admincontroller;
@@ -30,8 +31,8 @@ Route::controller(frontendController::class)->group((function(){
     Route::get('/','index');
     Route::get('/shop','shop');
     Route::get('/shop/{id}','viewproduct');
-
 }));
    
+Route::get('/cart',[cartController::class,'index'])->middleware('auth');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

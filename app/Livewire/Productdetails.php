@@ -21,7 +21,7 @@ class Productdetails extends Component
                 'product_id'=>$productId,
                 'quantity'=>$this->qtyCount
             ]);
-            //$this->emit('cartAddedOrUpdated')
+            $this->dispatch('cartAddedOrUpdated');
             $this->dispatch('message' ,
             ['text'=>$this->product->name." added to cart",
             'type'=>'success', 'status'=>200
