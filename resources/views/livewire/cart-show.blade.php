@@ -57,9 +57,14 @@
             <h5 class="mb-3">Total: <span class="float-end">&#8377;{{($totalPrice > 0 && $totalPrice<100) ? $totalPrice+50.00 : $totalPrice}}  </span></h5>
                 <hr/>
             <div class="d-flex gap-3 justify-content-between mb-3">
+                @if (count($cart) > 0)
                 <button type="button"  class="btn btn-danger btn-lg flex-fill"
                 wire:click = "emptycart()">Empty Cart </button>
-                <button type="button"  class="btn btn-info btn-lg flex-fill">proceed to checkout </button>
+            
+                <a href="{{url('/checkout')}}" type="button"  class="btn btn-info btn-lg flex-fill"
+                >proceed to checkout </a>
+                @endif
+            
                 
             </div>
         </div>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Orders;
 use App\Models\Products;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -92,5 +93,20 @@ class admincontroller extends Controller
             "image"=> $request->hasFile("image") ? $finalpath : $product->image
         ]);
         return redirect('/admin/view/product')->with('message','product added');
+    }
+
+    function displayorders(){
+        $orders = Orders::paginate(3);
+        return view('admin.order',compact('orders'));
+    }
+    function vieworder($id){
+        $order = Orders::find($id);
+        return view('admin.vieworder',compact('order'));
+
+    }
+    function updateorder($id , Request $request){
+        $order = Orders::where('id',$id);
+        $order->update([ 'status_message'=>$request->status]);
+        return redirect('/admin/orders')->with('message','order updated');
     }
 }
