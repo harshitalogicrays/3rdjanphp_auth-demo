@@ -1,14 +1,12 @@
-@extends('admin.admin')
+@extends('layouts.app')
 @section('content')
-<div class="contianer shadow p-2">
-    <h1>Orders 
-        <a class="btn btn-primary float-end me-2"  href="{{url('/admin/orders')}}" >Back</a>
-        <a class="btn btn-info float-end me-2"  href="{{url('/admin/orders/invoice/'.$order->id)}}" ><i class="bi bi-eye"></i>View Invoice</a>
-        <a class="btn btn-warning float-end me-2"  href="{{url('/admin/orders/invoice/download/'.$order->id)}}" ><i class="bi bi-download"></i>Download Invoice</a>
- 
-    </h1>
-    <hr/>
+<div class="container mt-5 shadow p-3">
+    <a class="btn btn-primary"   href="{{url('/myorders')}}" >Back to Orders</a
+>
+
 <div class="row ">
+   
+    
     <div class="col-6 p-2">
        <h2> Order Details</h2>
        <hr/>
@@ -17,25 +15,7 @@
        <p>Ordered Date: {{$order->created_at}}</p>
        <p>Payment Mode: {{$order->payment_mode}}</p>     
         @if ($order->status_message !='delivered')
-       <div class="card-body">
-       <form method="post" action="{{url('/admin/orders/update/'.$order->id)}}">
-       @csrf
-       @method('PUT')
-       <div class="mb-3"   >
-           <label for="" class="form-label">Order Status</label>
-           <select class="form-control" name="status" >
-               <option {{$order->status_message=='in progress' ? 'selected':''}}>in progress</option>
-               <option {{$order->status_message=='processing' ? 'selected':''}}>processing</option>
-               <option {{$order->status_message=='shipped' ? 'selected':''}}>shipped</option>
-               <option {{$order->status_message=='out for delivery' ? 'selected':''}}>out for delivery</option>
-               <option {{$order->status_message=='cancelled' ? 'selected':''}}>cancelled</option>
-               <option {{$order->status_message=='delivered' ? 'selected':''}}>delivered</option>
-           </select>
-       </div>
-       <button type="submit" class="btn btn-primary"> Update Status </button>
-       
-       </form>
-       </div>
+        <p class="text-danger p-3 border">Order Status Message: {{$order->status_message}}</p>
        @else
        <p class="text-success p-3 border">Order Status Message: {{$order->status_message}}</p>
       
@@ -96,5 +76,6 @@
             </tbody>
         </table>
         </div>
-</div></div>
+</div>
+</div>
 @endsection

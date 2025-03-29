@@ -27,18 +27,25 @@ Route::prefix('admin')->middleware(['auth',AdminMiddleware::class])->group(funct
         Route::get('orders' ,'displayorders');
         Route::get('vieworder/{id}' ,'vieworder');
         Route::put('orders/update/{id}' ,'updateorder');
+        Route::get('orders/invoice/{id}' ,'viewinvoice');
+        Route::get('orders/invoice/download/{id}' ,'downloadinvoice');
+
     }));
 });
 
 Route::controller(frontendController::class)->group((function(){ 
     Route::get('/','index');
     Route::get('/shop','shop');
+    Route::get('/search','shop');
     Route::get('/shop/{id}','viewproduct');
+    Route::get('/myorders','myorders')->middleware('auth');
+    Route::get('/myorders/details/{id}','myorderdetails')->middleware('auth');
 }));
    
 Route::get('/cart',[cartController::class,'index'])->middleware('auth');
 Route::get('/checkout',[checkoutController::class,'index'])->middleware('auth');
 Route::get('/thankyou',[checkoutController::class,'thankyou']);
+
 
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

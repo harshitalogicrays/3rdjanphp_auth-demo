@@ -19,7 +19,13 @@
                     <a class="nav-link" href="{{url('/shop') }}"> Shop</a>
                 </li>
             </ul>
-
+            <form class="d-flex" role="search" action="{{url('/search')}}">
+                <div class="input-group">
+                    <input class="form-control" type="search" placeholder="Search" 
+                    value="{{Request::get('search')}}" name="search">
+                    <button class="btn btn-danger" type="submit"><i class="bi bi-search"></i></button>
+                </div>
+            </form>
             <!-- Right Side Of Navbar -->
             <ul class="navbar-nav ms-auto">
                 <!-- Authentication Links -->
@@ -51,6 +57,8 @@
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{ url('/myorders') }}">Orders</a>
+                            <hr/>
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                onclick="event.preventDefault();
                                              document.getElementById('logout-form').submit();">
@@ -60,6 +68,8 @@
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                 @csrf
                             </form>
+
+                         
                         </div>
                     </li>
                 @endguest

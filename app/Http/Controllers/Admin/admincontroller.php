@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Orders;
 use App\Models\Products;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
 
@@ -108,5 +109,16 @@ class admincontroller extends Controller
         $order = Orders::where('id',$id);
         $order->update([ 'status_message'=>$request->status]);
         return redirect('/admin/orders')->with('message','order updated');
+    }
+    function viewinvoice($id){
+        $order = Orders::find($id);
+        return view('admin.generateinvoice',compact('order'));
+    }
+
+    function downloadinvoice($id){
+        $order = Orders::find($id);
+        $data = ['order'=>$order];
+        $pdf = Pdf::loadView('admin.generateinvoice',$data);
+        return $pdf->download('invoice.pdf');
     }
 }
